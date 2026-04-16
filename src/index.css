@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* On harmonise tout sur la même couleur très sombre */
+:root {
+    font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #05172c;
+    color: #f8fafc;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    font-family: 'Montserrat', sans-serif;
+    /* Petit bonus pour des scrolls fluides */
+}
+
+/* Barre de défilement personnalisée */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    /* Fond de la barre : un peu plus clair que le fond du site pour la voir */
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    /* Le curseur en Orange */
+    background: #494d51;
+    border-radius: 10px;
+}
+
+/* Effet au survol du curseur de scroll */
+::-webkit-scrollbar-thumb:hover {
+    background: #ea580c;
+}
+
+/* Animations personnalisées pour l'effet High-Tech */
+@keyframes slow-spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes pulse-soft {
+
+    0%,
+    100% {
+        opacity: 0.15;
+        filter: brightness(1);
+    }
+
+    50% {
+        opacity: 0.3;
+        filter: brightness(1.5);
+    }
+}
+
+.animate-slow-spin {
+    animation: slow-spin 60s linear infinite;
+}
+
+.animate-pulse-soft {
+    animation: pulse-soft 8s ease-in-out infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee 40s linear infinite;
+}
+
+.pause-animation:hover {
+    animation-play-state: paused;
+}
