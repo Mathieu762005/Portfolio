@@ -4,7 +4,18 @@ import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 function ProjectDetail() {
     const { id } = useParams();
+    // On récupère l'URL de base (ex: /Portfolio/)
+    const baseUrl = import.meta.env.BASE_URL;
+
     const project = projects.find((p) => p.id === parseInt(id));
+
+    // Fonction pour corriger le chemin de l'image (identique à ProjectCard)
+    const getCorrectImagePath = (img) => {
+        if (!img) return "";
+        if (img.startsWith('http')) return img;
+        const cleanPath = img.startsWith('/') ? img.slice(1) : img;
+        return `${baseUrl}${cleanPath}`;
+    };
 
     if (!project) {
         return (
@@ -33,7 +44,7 @@ function ProjectDetail() {
                 <div className="space-y-6">
                     <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-orange-500/5">
                         <img
-                            src={project.image}
+                            src={getCorrectImagePath(project.image)} // CORRECTION ICI
                             alt={project.title}
                             className="w-full h-auto object-cover"
                         />

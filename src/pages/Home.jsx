@@ -2,13 +2,33 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import projects from "../data/projects";
+
+
+// MÉTHODE 1 : Imports (Vite gère le chemin automatiquement pour le dossier assets)
 import maPhoto from "../assets/maPhoto.png";
 import circuitImg from "../assets/circuit.png";
 
+const techStack = [
+    { name: 'React', slug: 'react' },
+    { name: 'JavaScript', slug: 'javascript' },
+    { name: 'PHP', slug: 'php' },
+    { name: 'Tailwind CSS', slug: 'tailwindcss' },
+    { name: 'Node.js', slug: 'nodedotjs' },
+    { name: 'MySQL', slug: 'mysql' },
+    { name: 'Git', slug: 'git' },
+    { name: 'Vite', slug: 'vite' },
+    { name: 'Docker', slug: 'docker' },
+    { name: 'Lua', slug: 'lua' },
+    { name: 'HTML5', slug: 'html5' },
+    { name: 'CSS', slug: 'css' },
+];
 
 function Home() {
     // État pour gérer l'ouverture de la modal du CV
     const [isOpen, setIsOpen] = useState(false);
+
+    // Récupération de l'URL de base (ex: /Portfolio/) définie dans vite.config.js
+    const baseUrl = import.meta.env.BASE_URL;
 
     // On récupère les deux premiers projets pour l'aperçu
     const featuredProjects = projects.slice(0, 2);
@@ -16,11 +36,10 @@ function Home() {
     return (
         <div className="text-white">
 
-            {/* HERO */}
+            {/* HERO SECTION */}
             <section className="min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
                 {/* Décoration High-Tech derrière la photo */}
                 <div className="mb-8 relative">
-                    {/* Le cercle de circuit board qui tourne et "respire" */}
                     <div
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] pointer-events-none z-0 opacity-20 animate-slow-spin animate-pulse-soft"
                         style={{
@@ -32,7 +51,7 @@ function Home() {
                         }}
                     ></div>
 
-                    {/* Conteneur de la photo de profil (au-dessus du circuit) */}
+                    {/* Conteneur de la photo de profil */}
                     <div className="relative z-10 w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-orange-500 shadow-2xl shadow-orange-500/20 bg-[#05172c]">
                         <img
                             src={maPhoto}
@@ -71,7 +90,7 @@ function Home() {
                 </div>
             </section>
 
-            {/* ABOUT */}
+            {/* ABOUT SECTION */}
             <section className="py-24 px-6 bg-gray-800/50">
                 <div className="max-w-6xl mx-auto">
                     <h2 className="text-3xl font-bold mb-12 text-center">À propos</h2>
@@ -84,22 +103,21 @@ function Home() {
                                 className="relative group cursor-pointer"
                                 onClick={() => setIsOpen(true)}
                             >
-                                {/* Image du CV avec un petit effet de surbrillance au survol */}
+                                {/* Correction du chemin pour GitHub Pages */}
                                 <img
-                                    src="/images/cv-preview.png"
+                                    src={`${baseUrl}images/cv-preview.png`}
                                     alt="Aperçu de mon CV"
                                     className="rounded-lg shadow-2xl border border-gray-700 w-64 md:w-80 transition-transform duration-300 group-hover:scale-105"
                                 />
-                                {/* Overlay au survol */}
                                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-lg">
                                     <span className="text-white font-semibold">Voir en grand</span>
                                 </div>
                             </div>
 
-                            {/* Bouton de téléchargement */}
+                            {/* Correction du chemin du lien PDF */}
                             <a
-                                href="/Lenormand-Mathieu.pdf" // Le chemin vers ton fichier dans le dossier public
-                                download="Lenormand-Mathieu.pdf" // Force le téléchargement et donne un nom clair au fichier
+                                href={`${baseUrl}Lenormand-Mathieu.pdf`}
+                                download="Lenormand-Mathieu.pdf"
                                 className="inline-flex items-center px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-full transition-colors duration-300"
                             >
                                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -113,38 +131,35 @@ function Home() {
                         <div className="text-left">
                             <h3 className="text-2xl font-semibold mb-4 text-orange-500">Mon Parcours</h3>
                             <p className="text-xl text-gray-400 leading-relaxed mb-6">
-                                Salut ! Je m'appelle Mathieu Lenormand. Je suis développeur web junior, j’ai récemment obtenu ma certification en développement web et web mobile (niveau Bac+2).</p>
-                            <p className="text-lg text-gray-400 leading-relaxed mb-6">
-                                Avant le développement web, je suis passé par un CAP puis un Bac Pro en menuiserie. Ça m’a appris la rigueur, la précision et le goût du travail bien fait. Mais avec le temps, j’ai décidé de me réorienter vers ce qui me plaît vraiment : la programmation web.
+                                Salut ! Je m'appelle Mathieu Lenormand. Je suis développeur web junior, j’ai récemment obtenu ma certification en développement web et web mobile (niveau Bac+2).
                             </p>
                             <p className="text-lg text-gray-400 leading-relaxed mb-6">
-                                J’ai appris à créer des applications complètes en JavaScript et PHP. Depuis, je réalise différents projets (e-commerce, click & collect, API…) et je développe aussi sur mon serveur FiveM.</p>
+                                Avant le développement web, je suis passé par un CAP puis un Bac Pro en menuiserie. Ça m’a appris la rigueur, la précision et le goût du travail bien fait.
+                            </p>
                             <p className="text-lg text-gray-400 leading-relaxed mb-6">
-                                Aujourd’hui, je cherche une alternance en développement web sur Lyon pour continuer à progresser et travailler sur des projets concrets.</p>
+                                J’ai appris à créer des applications complètes en JavaScript et PHP. Depuis, je réalise différents projets (e-commerce, click & collect, API…) et je développe aussi sur mon serveur FiveM.
+                            </p>
+                            <p className="text-lg text-gray-400 leading-relaxed mb-6">
+                                Aujourd’hui, je cherche une alternance en développement web sur Lyon pour continuer à progresser et travailler sur des projets concrets.
+                            </p>
                         </div>
-
                     </div>
                 </div>
 
                 {/* MODAL POUR L'IMAGE DU CV */}
                 <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-                    {/* Fond sombre */}
                     <div className="fixed inset-0 bg-black/90" aria-hidden="true" />
-
                     <div className="fixed inset-0 flex items-center justify-center p-4">
                         <DialogPanel className="max-w-3xl w-full">
                             <div className="relative">
-                                {/* Bouton Fermer */}
                                 <button
                                     onClick={() => setIsOpen(false)}
                                     className="absolute -top-12 right-0 text-white hover:text-orange-500 text-xl font-bold transition-colors"
                                 >
                                     Fermer ✕
                                 </button>
-
-                                {/* Image agrandie */}
                                 <img
-                                    src="/images/cv-preview.png"
+                                    src={`${baseUrl}images/cv-preview.png`}
                                     alt="CV Agrandit"
                                     className="w-full h-auto rounded-lg shadow-2xl border border-white/10"
                                 />
@@ -172,7 +187,8 @@ function Home() {
                             <div key={project.id} className="group bg-gray-800/50 rounded-2xl overflow-hidden border border-white/5 hover:border-orange-500/30 transition-all shadow-xl hover:-translate-y-1">
                                 <div className="aspect-video overflow-hidden">
                                     <img
-                                        src={project.image}
+                                        /* Correction pour les images venant du fichier data */
+                                        src={project.image.startsWith('http') ? project.image : `${baseUrl}${project.image.startsWith('/') ? project.image.slice(1) : project.image}`}
                                         alt={project.title}
                                         className="w-full h-full object-cover transition-transform duration-500"
                                     />
@@ -198,20 +214,32 @@ function Home() {
 
             {/* TECHNOLOGIES MARQUEE */}
             <section className="py-24 overflow-hidden bg-[#05172c]">
-                <div className="bg-gray-800/50 py-24 sm:py-32">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <h2 className="text-center text-lg/8 font-semibold text-white">Technologies & outils utilisées</h2>
-                        <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-                            <img width="158" height="48" src="https://tailwindcss.com/plus-assets/img/logos/158x48/transistor-logo-white.svg" alt="Transistor" className="col-span-2 max-h-12 w-full object-contain lg:col-span-1" />
-                            <img width="158" height="48" src="https://tailwindcss.com/plus-assets/img/logos/158x48/reform-logo-white.svg" alt="Reform" className="col-span-2 max-h-12 w-full object-contain lg:col-span-1" />
-                            <img width="158" height="48" src="https://tailwindcss.com/plus-assets/img/logos/158x48/tuple-logo-white.svg" alt="Tuple" className="col-span-2 max-h-12 w-full object-contain lg:col-span-1" />
-                            <img width="158" height="48" src="https://tailwindcss.com/plus-assets/img/logos/158x48/savvycal-logo-white.svg" alt="SavvyCal" className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1" />
-                            <img width="158" height="48" src="https://tailwindcss.com/plus-assets/img/logos/158x48/statamic-logo-white.svg" alt="Statamic" className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1" />
-                        </div>
+                <div className="max-w-4xl mx-auto px-6 mb-12 text-center md:text-left">
+                    <h2 className="text-3xl font-black text-white mb-2 uppercase tracking-tight">Mon <span className="text-orange-500">Stack</span> Tech</h2>
+                    <p className="text-slate-500">Les outils et langages que j'utilise au quotidien</p>
+                </div>
+
+                <div className="relative group flex overflow-hidden py-10">
+                    <div className="animate-marquee pause-animation flex whitespace-nowrap gap-8 items-center">
+                        {[...techStack, ...techStack].map((tech, index) => (
+                            <div
+                                key={index}
+                                className="bg-white/5 border border-white/10 px-8 py-5 rounded-2xl flex items-center gap-4 transition-all hover:bg-white/10 hover:border-orange-500/50 group/item"
+                            >
+                                <img
+                                    src={`https://cdn.simpleicons.org/${tech.slug}/white`}
+                                    alt={tech.name}
+                                    title={tech.name}
+                                    className="w-8 h-8 object-contain transition-all group-hover/item:scale-110"
+                                />
+                                <span className="text-xl font-black text-slate-400 group-hover/item:text-orange-500 transition-colors tracking-tighter uppercase whitespace-nowrap pe-7">
+                                    {tech.name}
+                                </span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
-
         </div>
     );
 }

@@ -1,12 +1,26 @@
 import { Link } from "react-router-dom";
 
 function ProjectCard({ id, title, description, image, tech, github, demo, details }) {
+    // Récupération de l'URL de base (ex: /Portfolio/)
+    const baseUrl = import.meta.env.BASE_URL;
+
+    // Fonction pour corriger le chemin de l'image
+    const getCorrectImagePath = (img) => {
+        if (!img) return "";
+        // Si c'est une URL externe (http), on la laisse telle quelle
+        if (img.startsWith('http')) return img;
+        // Si c'est un chemin local, on ajoute le baseUrl
+        // On retire le premier slash de l'image s'il existe pour éviter d'avoir //
+        const cleanPath = img.startsWith('/') ? img.slice(1) : img;
+        return `${baseUrl}${cleanPath}`;
+    };
+
     return (
         <div className="group bg-gray-800/50 rounded-2xl overflow-hidden border border-white/5 hover:border-orange-500/30 transition-all shadow-xl hover:-translate-y-1">
-            
+
             <Link to={`/projects/${id}`} className="aspect-video overflow-hidden relative block">
                 <img
-                    src={image}
+                    src={getCorrectImagePath(image)} // Utilisation du chemin corrigé
                     alt={title}
                     className="w-full h-full object-cover transition-transform duration-500"
                 />
