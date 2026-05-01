@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function ProjectCard({ id, title, description, image, tech, github, demo, details }) {
+function ProjectCard({ id, title, description, image, tech, github, details }) {
     // Récupération de l'URL de base (ex: /Portfolio/)
     const baseUrl = import.meta.env.BASE_URL;
 
@@ -72,15 +72,6 @@ function ProjectCard({ id, title, description, image, tech, github, demo, detail
                         className="text-sm font-bold text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-1"
                     >
                         GitHub ↗
-                    </a>
-
-                    <a
-                        href={demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-bold text-slate-400 hover:text-orange-500 transition-colors flex items-center gap-1"
-                    >
-                        Live Demo ↗
                     </a>
                 </div>
             </div>

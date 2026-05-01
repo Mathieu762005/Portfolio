@@ -26,7 +26,6 @@ function Projects() {
                         image={project.image}
                         tech={project.tech}
                         github={project.github}
-                        demo={project.demo}
                         details={project.details}
                     />
                 ))}

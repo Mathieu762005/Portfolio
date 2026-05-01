@@ -44,9 +44,9 @@ function ProjectDetail() {
                 <div className="space-y-6">
                     <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-orange-500/5">
                         <img
-                            src={getCorrectImagePath(project.image)} // CORRECTION ICI
+                            src={getCorrectImagePath(project.image)}
                             alt={project.title}
-                            className="w-full h-auto object-cover"
+                            className="w-full h-auto max-h-96 object-cover"
                         />
                     </div>
                     <div>
@@ -142,14 +142,6 @@ function ProjectDetail() {
                             className="bg-white text-gray-900 px-8 py-4 rounded-2xl font-black hover:bg-orange-500 hover:text-white transition-all shadow-lg active:scale-95"
                         >
                             Voir sur GitHub
-                        </a>
-                        <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-2xl font-black hover:bg-white/10 transition-all active:scale-95"
-                        >
-                            Démo en ligne ↗
                         </a>
                     </div>
                 </div>

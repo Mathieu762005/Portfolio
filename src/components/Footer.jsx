@@ -67,7 +67,7 @@ function Footer() {
                         © {currentYear} Mathieu Lenormand. Tous droits réservés.
                     </p>
                     <p className="text-slate-500 text-xs">
-                        Conçu avec passion en <span className="text-orange-500">React</span> & <span className="text-orange-500">Tailwind</span>
+                        Conçu avec <span className="text-orange-500">React</span> & <span className="text-orange-500">Tailwind</span>
                     </p>
                 </div>
             </div>
