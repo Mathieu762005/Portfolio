@@ -8,11 +8,11 @@ function Contact() {
         event.preventDefault();
         setIsSubmitting(true);
         setResult("Envoi en cours...");
-        
+
         const formData = new FormData(event.target);
         // On utilise la variable d'environnement (définie dans .env.local)
         formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
-        
+
         // Personnalisation de l'email reçu
         formData.append("subject", "Nouveau message depuis mon Portfolio ! 🚀");
         formData.append("from_name", "Portfolio Contact");
@@ -62,8 +62,7 @@ function Contact() {
                 <div className="space-y-8">
                     <div>
                         <h3 className="text-orange-500 font-bold uppercase tracking-widest text-sm mb-4">Coordonnées</h3>
-                        <p className="text-2xl text-white font-medium">mathieu762005@gmail.com</p>
-                        <p className="text-slate-400 mt-2">Oullins-Pierre-Bénite, France (Disponible en remote)</p>
+                        <p className="text-slate-400 mt-2">Oullins-Pierre-Bénite, France<br />(Disponible en remote)</p>
                     </div>
 
                     <div>
