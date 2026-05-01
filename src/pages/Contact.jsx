@@ -12,11 +12,6 @@ function Contact() {
         const formData = new FormData(event.target);
         // On utilise la variable d'environnement (définie dans .env.local)
         formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
-
-        // Personnalisation de l'email reçu
-        formData.append("subject", "Nouveau message depuis mon Portfolio ! 🚀");
-        formData.append("from_name", "Portfolio Contact");
-
         try {
             const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
